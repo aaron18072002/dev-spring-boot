@@ -11,14 +11,17 @@ public class DemoController {
 
     private Coach coach;
     private Coach anotherCoach;
+    private Coach swimCoach;
 
     // constructor injection
     @Autowired
     public DemoController(@Qualifier("tennisCoach") Coach coach,
-                          @Qualifier("tennisCoach") Coach anotherCoach) {
+                          @Qualifier("tennisCoach") Coach anotherCoach,
+                          @Qualifier("aquatic") Coach swimCoach) {
         System.out.println("DemoController, " + this.getClass().getName());
         this.coach = coach;
         this.anotherCoach = anotherCoach;
+        this.swimCoach = swimCoach;
     }
 
     // setter injection
