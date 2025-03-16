@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CruddemoApplication {
 
@@ -19,8 +21,56 @@ public class CruddemoApplication {
 		return runner -> {
 //			createStudent(studentDAO);
 
-			readStudent(studentDAO);
+//			readStudent(studentDAO);
+
+//			readAllStudents(studentDAO);
+
+//			this.readStudentsByLastName(studentDAO);
+
+//			updateStudent(studentDAO);
+
+//			deleteStudent(studentDAO);
+
+			deleteAllStudents(studentDAO);
 		};
+	}
+
+	public void deleteAllStudents(StudentDAO studentDAO) {
+		int rows = studentDAO.deleteAll();
+		System.out.println("Số Students đã xóa: " + rows);
+	}
+
+	public void deleteStudent(StudentDAO studentDAO) {
+		int rows = studentDAO.deleteById(3);
+		System.out.println("Số Students đã xóa: " + rows);
+	}
+
+	public void updateStudent(StudentDAO studentDAO) {
+		Student student = studentDAO.findById(1);
+		student.setFirstName("Scooby");
+		student.setLastName("Doo");
+		student.setEmail("scooby@doo.com");
+		studentDAO.update(student);
+		Student updatedStudent = studentDAO.findById(student.getStudentId());
+		System.out.println("Student updated: " + updatedStudent);
+	}
+
+	public void readStudentsByLastName(StudentDAO studentDAO) {
+		System.out.println("Get Students by lastName --> [");
+		List<Student> students = studentDAO.findByLastName("Duck");
+		for(Student student : students) {
+			System.out.println("\t" + student);
+		}
+		System.out.println("]");
+	}
+
+	public void readAllStudents(StudentDAO studentDAO) {
+		System.out.println("Get all Students --> [");
+		List<Student> students = studentDAO.findAll();
+		for(Student student : students) {
+			System.out.println("\t" + student);
+		}
+		System.out.println("]");
 	}
 
 	private void readStudent(StudentDAO studentDAO) {
