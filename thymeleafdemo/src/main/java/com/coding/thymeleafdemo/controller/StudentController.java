@@ -1,17 +1,28 @@
 package com.coding.thymeleafdemo.controller;
 
 import com.coding.thymeleafdemo.model.Student;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class StudentController {
+
+    @Value("${countries}")
+    private List<String> countries;
+
+    @Value("${favouriteLanguages}")
+    private List<String> favouriteLanguages;
 
     @GetMapping("/showStudentForm")
     public String showStudentForm(Model model) {
         Student student = new Student();
         model.addAttribute("student", student);
+        model.addAttribute("countries", this.countries);
+        model.addAttribute("favouriteLanguages", this.favouriteLanguages);
 
         return "studentForm";
     }
