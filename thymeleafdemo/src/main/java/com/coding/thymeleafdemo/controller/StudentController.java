@@ -17,12 +17,16 @@ public class StudentController {
     @Value("${favouriteLanguages}")
     private List<String> favouriteLanguages;
 
+    @Value("${systems}")
+    private List<String> favouriteSystems;
+
     @GetMapping("/showStudentForm")
     public String showStudentForm(Model model) {
         Student student = new Student();
         model.addAttribute("student", student);
         model.addAttribute("countries", this.countries);
         model.addAttribute("favouriteLanguages", this.favouriteLanguages);
+        model.addAttribute("favouriteSystems", this.favouriteSystems);
 
         return "studentForm";
     }

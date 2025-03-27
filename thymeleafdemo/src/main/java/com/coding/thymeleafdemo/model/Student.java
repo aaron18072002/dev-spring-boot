@@ -1,5 +1,7 @@
 package com.coding.thymeleafdemo.model;
 
+import java.util.List;
+
 public class Student {
 
     private String firstName;
@@ -9,6 +11,8 @@ public class Student {
     private String country;
 
     private String favouriteLanguage;
+
+    private List<String> favouriteSystems;
 
     public Student() {
 
@@ -46,6 +50,14 @@ public class Student {
         this.favouriteLanguage = favouriteLanguage;
     }
 
+    public List<String> getFavouriteSystems() {
+        return favouriteSystems;
+    }
+
+    public void setFavouriteSystems(List<String> favouriteSystems) {
+        this.favouriteSystems = favouriteSystems;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -53,6 +65,7 @@ public class Student {
                 ", lastName='" + lastName + '\'' +
                 ", country='" + country + '\'' +
                 ", favouriteLanguage='" + favouriteLanguage + '\'' +
+                ", favouriteSystems=" + favouriteSystems +
                 '}';
     }
 
